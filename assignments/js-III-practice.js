@@ -135,57 +135,109 @@
 // can make objects from constructors
 // constructor function
 // made a constructor function, attached objects to it
-function Parent(attribute) {
-    this.name = attribute.name;
-    this.age = attribute.age;
-    this.hometown = attribute.hometown;
-    this.phrase = attribute.phrase;
+// function Parent(attribute) {
+//     this.name = attribute.name;
+//     this.age = attribute.age;
+//     this.hometown = attribute.hometown;
+//     this.phrase = attribute.phrase;
+// }
+
+// // using prototype, now a prototype function of parent
+// Parent.prototype.speak = function () {
+//     return `${this.phrase}`;
+// }
+
+// const fred = new Parent({
+//     name: 'Fred',
+//     age: 24,
+//     hometown: 'Bedrock',
+//     phrase: 'Yabba Dabba Doo!'
+// });
+
+// const wilma = new Parent({
+//     name: 'Fred',
+//     age: 22,
+//     hometown: 'Bedrock',
+//     phrase: 'Fred stinks like my underwear'
+// });
+
+// // binding this parent function to this child
+// function Child(childAttributes) {
+//     Parent.call(this, childAttributes);
+//     this.food = childAttributes.food;
+// }
+
+// Child.prototype = Object.create(Parent.prototype);
+
+// const pebbles = new Child({
+//     name: 'Pebbles',
+//     age: 487,
+//     hometown: 'Bedrock',
+//     phrase: 'Hey, friend',
+//     food: 'Veggies'
+// });
+
+
+
+
+// console.log(fred);
+// console.log(wilma);
+// console.log(pebbles);
+
+// // using prototype
+// console.log(fred.speak());
+// console.log(wilma.speak());
+// console.log(pebbles.speak());
+// console.log(pebbles.food);
+
+
+
+
+
+
+// JS-III Lambda-School this. TK material code along
+
+// implicit binding
+const myObj1 = {
+    greeting: 'Hello',
+    speak: function () {
+        console.log('implicit this === ', this);
+        return `${this.greeting}, world!`
+    }
+};
+
+myObj1.speak();
+
+
+
+// constructor function
+// capitalize first letter of constructor function
+
+function Person(obj) {
+    this.name = obj.name;
+    this.age = obj.age;
+    this.speak = function () {
+        console.log(`This new binding`, this);
+        return `Hello, my name is ${this.name}, and I am ${this.age} years old!`
+    }
 }
 
-// using prototype, now a prototype function of parent
-Parent.prototype.speak = function () {
-    return `${this.phrase}`;
-}
-
-const fred = new Parent({
-    name: 'Fred',
-    age: 24,
-    hometown: 'Bedrock',
-    phrase: 'Yabba Dabba Doo!'
+const cobra = new Person({
+    name: 'Cobra',
+    age: 24
 });
 
-const wilma = new Parent({
-    name: 'Fred',
-    age: 22,
-    hometown: 'Bedrock',
-    phrase: 'Fred stinks like my underwear'
+const lynn1 = new Person({
+    name: 'Lynn',
+    age: 25
 });
 
-// binding this parent function to this child
-function Child(childAttributes) {
-    Parent.call(this, childAttributes);
-    this.food = childAttributes.food;
-}
+// even though i'm calling cobra to begin with, lynn1 is the result that is given
+cobra.speak.call(lynn1);
 
-Child.prototype = Object.create(Parent.prototype);
-
-const pebbles = new Child({
-    name: 'Pebbles',
-    age: 487,
-    hometown: 'Bedrock',
-    phrase: 'Hey, friend',
-    food: 'Veggies'
-});
+// vice versa
+lynn1.speak.apply(cobra);
 
 
-
-
-console.log(fred);
-console.log(wilma);
-console.log(pebbles);
-
-// using prototype
-console.log(fred.speak());
-console.log(wilma.speak());
-console.log(pebbles.speak());
-console.log(pebbles.food);
+// cobra.speak();
+// lynn1.speak();

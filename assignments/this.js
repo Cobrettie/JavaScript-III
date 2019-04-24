@@ -49,7 +49,7 @@ myObj.sayHello('Cobrettie');
 // code example for New Binding
 
 function CordialPerson(greeter) {
-    this.greeting = 'Hello, old friend. ';
+    this.greeting = 'Hello, old friend. My name is ';
     this.greeter = greeter;
     this.speak = function () {
         console.log(this.greeting + this.greeter);
@@ -80,7 +80,7 @@ const yourObject = {
 const thingsYouEnjoy = ['God', ' Jesus', ' The Holy Spirit', ' Praying', ' Fasting', ' Wisdom']
 
 function tellUsAboutYourself(thing1, thing2, thing3) {
-    return `Hi! My name is ${this.name}, I live in ${this.city}, and I enjoy ${thing1}, ${thing2}, and ${thing3}. I love to eat ${this.favoriteFood}.`
+    return `Hi! My name is ${this.name}, I live in ${this.city}, and I enjoy ${thing1}, ${thing2}, and ${thing3}. I love ${this.favoriteFood}.`
 }
 
-console.log(tellUsAboutYourself.call(yourObject, thingsYouEnjoy));
+console.log(tellUsAboutYourself.apply(yourObject, thingsYouEnjoy));
